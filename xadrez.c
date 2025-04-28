@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 // Desafio de Xadrez
-// Este código simula a movimentação da Torre, Bispo e Rainha utilizando estruturas de repetição.
+// Este código simula a movimentação da Torre, Bispo, Rainha e Cavalo utilizando estruturas de repetição.
 
 int main() {
-    // Variáveis para o número de casas que cada peça deve se mover
+    // Variáveis para o número de casas que a Torre, Rainha e Bispo devem se mover
     int casasTorre = 5;
     int casasBispo = 5;
     int casasRainha = 8;
@@ -30,6 +30,24 @@ int main() {
         printf("Esquerda\n");
         i++;
     } while (i <= casasRainha);
+
+    // Cavalo (movimento em "L": duas casas para baixo e uma para a esquerda)
+    printf("\nMovimentacao do Cavalo:\n");
+
+    int movimentosBaixo = 2; // Número de casas para baixo
+    int movimentosEsquerda = 1; // Número de casas para a esquerda
+
+    // Primeiro loop (for) para movimentar duas casas para baixo
+    for (int j = 1; j <= movimentosBaixo; j++) {
+        printf("Baixo\n");
+    }
+
+    // Segundo loop (while) para movimentar uma casa para a esquerda
+    int k = 1;
+    while (k <= movimentosEsquerda) {
+        printf("Esquerda\n");
+        k++;
+    }
 
     return 0;
 }
