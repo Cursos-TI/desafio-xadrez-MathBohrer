@@ -1,52 +1,80 @@
+// Desafio de Xadrez - Nível Mestre
+// Este código simula a movimentação da Torre, Bispo, Rainha e Cavalo utilizando recursividade e loops aninhados.
+
 #include <stdio.h>
 
-// Desafio de Xadrez
-// Este código simula a movimentação da Torre, Bispo, Rainha e Cavalo utilizando estruturas de repetição.
+void moverTorre(int casasRestantes) {
+    // Função recursiva para movimentação da Torre para a direita
+    if (casasRestantes > 0) {
+        printf("Direita\n");
+        moverTorre(casasRestantes - 1);
+    }
+}
+
+void moverBispo(int casasRestantesVertical, int casasRestantesHorizontal) {
+    // Função recursiva para movimentação do Bispo em diagonal (Cima Direita)
+    if (casasRestantesVertical > 0 && casasRestantesHorizontal > 0) {
+        printf("Cima Direita\n");
+        moverBispo(casasRestantesVertical - 1, casasRestantesHorizontal - 1);
+    }
+}
+
+void moverRainha(int casasRestantes) {
+    // Função recursiva para movimentação da Rainha para a esquerda
+    if (casasRestantes > 0) {
+        printf("Esquerda\n");
+        moverRainha(casasRestantes - 1);
+    }
+}
 
 int main() {
-    // Variáveis para o número de casas que a Torre, Rainha e Bispo devem se mover
+    // Variáveis para o número de casas que cada peça deve se mover
     int casasTorre = 5;
     int casasBispo = 5;
     int casasRainha = 8;
 
-    // Torre (5 casas para a direita) usando for
+    // Movimentação da Torre
     printf("Movimentacao da Torre:\n");
-    for (int i = 1; i <= casasTorre; i++) {
-        printf("Direita\n");
-    }
+    moverTorre(casasTorre);
 
-    // Bispo (5 casas na diagonal para cima e à direita) usando while
+    // Movimentação do Bispo
     printf("\nMovimentacao do Bispo:\n");
-    int i = 1;
-    while (i <= casasBispo) {
-        printf("Cima Direita\n");
-        i++;
+    
+    // Além da recursividade, também utilizando loops aninhados para o Bispo
+    int movimentosVerticais = 5;
+    int movimentosHorizontais = 5;
+    for (int i = 0; i < movimentosVerticais; i++) {
+        for (int j = 0; j < movimentosHorizontais; j++) {
+            if (i == j) { // Diagonal principal
+                printf("Cima Direita\n");
+            }
+        }
     }
 
-    // Rainha (8 casas para a esquerda) usando do-while
+    // Movimentação da Rainha
     printf("\nMovimentacao da Rainha:\n");
-    i = 1;
-    do {
-        printf("Esquerda\n");
-        i++;
-    } while (i <= casasRainha);
+    moverRainha(casasRainha);
 
-    // Cavalo (movimento em "L": duas casas para baixo e uma para a esquerda)
+    // Movimentação do Cavalo
     printf("\nMovimentacao do Cavalo:\n");
+    
+    // Variáveis para o movimento do Cavalo
+    int movimentosCima = 2;  // Duas casas para cima
+    int movimentosDireita = 1; // Uma casa para a direita
 
-    int movimentosBaixo = 2; // Número de casas para baixo
-    int movimentosEsquerda = 1; // Número de casas para a esquerda
-
-    // Primeiro loop (for) para movimentar duas casas para baixo
-    for (int j = 1; j <= movimentosBaixo; j++) {
-        printf("Baixo\n");
-    }
-
-    // Segundo loop (while) para movimentar uma casa para a esquerda
-    int k = 1;
-    while (k <= movimentosEsquerda) {
-        printf("Esquerda\n");
-        k++;
+    // Loops aninhados com múltiplas variáveis
+    for (int cima = 1; cima <= movimentosCima; cima++) {
+        printf("Cima\n");
+        if (cima == movimentosCima) {
+            int direita = 1;
+            while (direita <= movimentosDireita) {
+                if (direita == 1) {
+                    printf("Direita\n");
+                }
+                direita++;
+            }
+            break; // Após mover para a direita, o Cavalo conclui o movimento em "L"
+        }
     }
 
     return 0;
